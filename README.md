@@ -68,7 +68,7 @@ Additionally, this repository includes:
 
 ## Installation & Usage
 
-1. **Clone this repository**:
+**Clone this repository**:
    ```bash
    git clone https://github.com/<YourUsername>/Signal_Processing_For_Remote_Patient_Monitoring.git
    cd Signal_Processing_For_Remote_Patient_Monitoring
