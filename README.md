@@ -25,7 +25,7 @@ Additionally, this repository includes:
 ├── Measuring_Respiration_and_Pulse_Rate.ipynb  (Accelerometry-based lab)
 ├── Measuring_SpO2_and_Pulse_Rate.ipynb         (PPG-based lab)
 └── README.md
-
+```
 
 ## Overview of the Files
 
