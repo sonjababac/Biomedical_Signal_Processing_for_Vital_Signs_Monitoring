@@ -13,15 +13,9 @@ Additionally, this repository includes:
 ---
 
 ## Repository Contents
-. ├── Datasets │ 
-├── Accelerometry │ 
-│ └── [CSV files for measuring respiration and pulse from accelerometer] │
-└── PPG │ └── [Excel or CSV files for measuring SpO₂ and pulse rate from PPG data]
-├── Remote_Patient_Monitoring_Trends_in_2025_slides.pdf
-├── requirements.txt 
-├── Measuring_Respiration_and_Pulse_Rate.ipynb (Accelerometry-based lab)
-├── Measuring_SpO2_and_Pulse_Rate.ipynb (PPG-based lab) 
-└── README.md
+<details> <summary>**Example Markdown snippet**</summary>
+. ├── Datasets │ ├── Accelerometry │ │ └── [CSV files for measuring respiration and pulse from accelerometer] │ └── PPG │ └── [Excel or CSV files for measuring SpO₂ and pulse rate from PPG data] ├── Remote_Patient_Monitoring_Trends_in_2025_slides.pdf ├── requirements.txt ├── Measuring_Respiration_and_Pulse_Rate.ipynb (Accelerometry-based lab) ├── Measuring_SpO2_and_Pulse_Rate.ipynb (PPG-based lab) └── README.md
+</details>
 
 1. **`Measuring_SpO2_and_Pulse_Rate.ipynb`**  
    Demonstrates how to:
