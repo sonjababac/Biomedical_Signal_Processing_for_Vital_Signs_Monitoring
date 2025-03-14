@@ -1,9 +1,9 @@
 # Signal Processing for Remote Patient Monitoring
 
-This repository contains two Python scripts (originally translated from MATLAB) demonstrating how to process real-world physiological data for **remote patient monitoring**. The focus is on:
+This repository contains two Python scripts demonstrating how to process real-world physiological data for **remote patient monitoring**. The focus is on:
 
 1. **Measuring SpO₂ and Pulse Rate** from photoplethysmography (PPG) data.
-2. **Measuring Respiration and Pulse Rate** from accelerometry data (seismocardiography + chest orientation).
+2. **Measuring Respiration and Pulse Rate** from accelerometry data (seismocardiography - the recording of body vibrations induced by the heart and breathing).
 
 Additionally, this repository includes:
 - A `requirements.txt` file listing the Python dependencies.
@@ -13,27 +13,45 @@ Additionally, this repository includes:
 ---
 
 ## Repository Contents
-```
-. ├── Datasets │ ├── Accelerometry │ │ └── [CSV files for measuring respiration and pulse from accelerometer] │ └── PPG │ └── [Excel or CSV files for measuring SpO₂ and pulse rate from PPG data] ├── Remote_Patient_Monitoring_Trends_in_2025_slides.pdf ├── requirements.txt ├── Measuring_Respiration_and_Pulse_Rate.ipynb (Accelerometry-based lab) ├── Measuring_SpO2_and_Pulse_Rate.ipynb (PPG-based lab) └── README.md
-```
+.
+├── Datasets
+│   ├── Accelerometry
+│   │   └── [CSV files for measuring respiration and pulse from accelerometer]
+│   └── PPG
+│       └── [Excel or CSV files for measuring SpO₂ and pulse rate from PPG data]
+├── Remote_Patient_Monitoring_Trends_in_2025_slides.pdf
+├── requirements.txt
+├── Measuring_Respiration_and_Pulse_Rate.ipynb  (Accelerometry-based lab)
+├── Measuring_SpO2_and_Pulse_Rate.ipynb         (PPG-based lab)
+└── README.md
 
-1. **`Measuring_SpO2_and_Pulse_Rate.ipynb`**  
-   Demonstrates how to:
-   - Load and preprocess PPG signals (red & IR).
-   - Apply filtering and ratio-of-ratios methods.
-   - Detect peaks to calculate pulse rate.
-   - Compute SpO₂ from calibrated sensor data.
-   - Visualize the signals and compare results with reference measurements.
+## Overview of the Files
 
-2. **`Measuring_Respiration_and_Pulse_Rate.ipynb`**  
-   Demonstrates how to:
-   - Load and resample accelerometry data (X, Y, Z).
-   - Identify which axes primarily reflect respiration (Y) and pulse (Z).
-   - Perform spectral analysis to guide filter design.
-   - Apply bandpass filters for respiration and pulse rate ranges.
-   - Detect peaks to calculate respiration rate and pulse rate.
-   - (Optional) Use the envelope of the pulse signal for more robust PR estimation.
-   - Visualize how PR and RR change over time and compare with manual measurements.
+1. **`Measuring_SpO2_and_Pulse_Rate.ipynb`**
+
+   This notebook demonstrates how to:
+   - **Import and Inspect PPG Data:** Load red and infrared (IR) signals from a finger clip sensor.
+   - **Preprocess Signals:** Apply a Butterworth bandpass filter to isolate the heart rate frequency range (0.8–2 Hz) and use a low-pass filter to separate DC and AC components.
+   - **Visualize Signal Quality:** Plot raw versus filtered signals to verify noise reduction and preservation of the pulsatile AC component.
+   - **Peak Detection:** Detect peaks in the filtered IR signal to determine the time intervals between heartbeats.
+   - **Calculate Pulse Rate:** Convert inter-beat intervals into instantaneous pulse rate (bpm) and apply an 8-beat moving average for smoothing.
+   - **Compute SpO₂:** Use the ratio-of-ratios method with calibration constants to compute SpO₂ per beat.
+   - **Compare Results:** Visualize and compare the computed SpO₂ and pulse rate with reference measurements.
+
+2. **`Measuring_Respiration_and_Pulse_Rate.ipynb`**
+
+   This notebook demonstrates how to:
+   - **Load and Resample Accelerometry Data:** Import CSV files containing acceleration data along the X, Y, and Z axes and interpolate the data to a uniform sampling rate (125 Hz).
+   - **Understand Sensor Axes:** Identify that the Y-axis primarily captures respiration (chest expansion/contraction) while the Z-axis captures pulse-related mechanical vibrations.
+   - **Spectral Analysis:** Compute periodograms to determine dominant frequency ranges (e.g., 0.1–0.5 Hz for respiration and 5–20 Hz for pulse rate) to guide filter design.
+   - **Filter Design:** Create 3rd‑order Butterworth bandpass filters for both respiration and pulse signals.
+   - **Apply Filtering:** Use both causal (lfilter) and zero-phase (filtfilt) filtering methods and compare the results.
+   - **Peak Detection:** Detect peaks in the filtered signals to calculate respiration rate (RR) and pulse rate (PR).
+   - **Envelope Analysis:** Compute the envelope of the filtered pulse signal using the Hilbert transform to enhance peak detection.
+   - **Rate Calculation and Averaging:** Calculate instantaneous rates and average them over a 1‑minute period, then compare these with manually recorded values.
+   - **Explore Signal Interactions:** Use dual‑axis plotting to visually analyze the interaction between respiration and pulse rate (Respiratory Sinus Arrhythmia).
+
+---
 
 3. **`requirements.txt`**  
    A list of Python dependencies used in both notebooks. See instructions below on how to install them.
@@ -53,3 +71,14 @@ Additionally, this repository includes:
    ```bash
    git clone https://github.com/<YourUsername>/Signal_Processing_For_Remote_Patient_Monitoring.git
    cd Signal_Processing_For_Remote_Patient_Monitoring
+
+
+## Disclaimer
+These scripts are for educational and research purposes only and are not intended for clinical or diagnostic use. Consult appropriate medical professionals for any healthcare-related decisions.
+
+## License
+This project is licensed under the MIT License. Feel free to modify or use these materials in accordance with the license terms.
+
+# Happy Vital Signs Monitoring!
+
+
