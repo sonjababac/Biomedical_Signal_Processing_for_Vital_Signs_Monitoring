@@ -51,7 +51,6 @@ Additionally, this repository includes:
    - **Rate Calculation and Averaging:** Calculate instantaneous rates and average them over a 1‑minute period, then compare these with manually recorded values.
    - **Explore Signal Interactions:** Use dual‑axis plotting to visually analyze the interaction between respiration and pulse rate (Respiratory Sinus Arrhythmia).
 
----
 
 3. **`requirements.txt`**  
    A list of Python dependencies used in both notebooks. See instructions below on how to install them.
